@@ -295,3 +295,7 @@ var CSSJSON = new function () {
     };
 
 };
+
+if(module && module.exports) {
+    module.exports = CSSJSON
+}
