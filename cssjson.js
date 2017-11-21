@@ -121,7 +121,7 @@ var CSSJSON = new function () {
                     } else {
                         var bits = [name];
                     }
-                    for (let i in bits) {
+                    bits.forEach(function(i){
                         var sel = bits[i].trim();
                         if (sel in node.children) {
                             for (var att in newNode.attributes) {
@@ -130,7 +130,7 @@ var CSSJSON = new function () {
                         } else {
                             node.children[sel] = newNode;
                         }
-                    }
+                    })
                 }
             } else if (!isEmpty(match[capEnd])) {
                 // Node has finished
@@ -200,14 +200,14 @@ var CSSJSON = new function () {
         }
         if (node.children) {
             var first = true;
-            for (i in node.children) {
+            Object.keys(node.children).forEach(function(i){
                 if (breaks && !first) {
                     cssString += '\n';
                 } else {
                     first = false;
                 }
                 cssString += strNode(i, node.children[i], depth);
-            }
+            })
         }
         return cssString;
     };
